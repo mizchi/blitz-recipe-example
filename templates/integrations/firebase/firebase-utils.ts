@@ -1,5 +1,5 @@
 import firebase from "firebase/app"
-import firebaseConfig from "config/firebase-config"
+import firebaseConfig from "config/firebase-config.json"
 
 export function getApp() {
   if (firebase.apps.length > 0) {
