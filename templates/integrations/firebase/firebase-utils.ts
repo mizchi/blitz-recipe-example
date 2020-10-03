@@ -7,6 +7,7 @@ export function getApp() {
 }
 
 export async function getIdToken(forceRefresh: boolean = false) {
-  const token = await getApp().currentUser.getIdToken(forceRefresh)
+  const auth = getApp().auth()
+  const token = auth.currentUser?.getIdToken(forceRefresh)
   return token
 }

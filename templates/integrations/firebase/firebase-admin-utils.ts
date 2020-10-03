@@ -5,15 +5,14 @@
 import * as admin from "firebase-admin"
 import firebaseAdminCert from "config/firebase-admin-cert.json"
 
-export function getAdmin(): admin.app.App {
-  if (admin.apps.length > 0) {
-    return admin.apps[0] as admin.app.App
-  } else {
-    return admin.initializeApp({
+export function getAdmin() {
+  return (
+    admin.apps[0] ??
+    admin.initializeApp({
       credential: admin.credential.cert(firebaseAdminCert as any),
       databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
     })
-  }
+  )
 }
 
 export async function verifyIdToken(idToken: string) {
