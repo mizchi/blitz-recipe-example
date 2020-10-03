@@ -23,8 +23,8 @@ export default RecipeBuilder()
     stepId: "firebase-utils-integrations",
     stepName: "Create firebase-utils / firebase-admin-utlis",
     explanation: "Add firebase/firebase-admin utils",
-    targetDirectory: "./app/integrations",
-    templatePath: path.join(__dirname, "templates", "integrations"),
+    targetDirectory: "./integrations/firebase",
+    templatePath: path.join(__dirname, "templates", "integrations", "firebase"),
     templateValues: {},
   })
   .addNewFilesStep({

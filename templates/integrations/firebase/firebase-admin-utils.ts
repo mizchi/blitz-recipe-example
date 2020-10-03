@@ -3,14 +3,14 @@
  **/
 
 import * as admin from "firebase-admin"
-import firebaseAdminConfig from "../config/firebase-admin-cert.json"
+import firebaseAdminCert from "config/firebase-admin-cert.json"
 
 export function getAdmin(): admin.app.App {
   if (admin.apps.length > 0) {
     return admin.apps[0] as admin.app.App
   } else {
     return admin.initializeApp({
-      credential: admin.credential.cert(firebaseAdminConfig as any),
+      credential: admin.credential.cert(firebaseAdminCert as any),
       databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
     })
   }
