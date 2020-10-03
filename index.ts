@@ -1,5 +1,6 @@
 import {RecipeBuilder, paths, addImport} from "@blitzjs/installer"
 import j from "jscodeshift"
+import path from "path"
 // import {NodePath} from "ast-types/lib/node-path"
 import {Collection} from "jscodeshift/src/Collection"
 
@@ -18,27 +19,38 @@ export default RecipeBuilder()
       {name: "react-firebase-hooks", version: "latest"},
     ],
   })
-  .addTransformFilesStep({
-    stepId: "firebase initialize",
-    stepName: "Import firebase",
-    explanation: `Import firebase on _app`,
-    singleFileSearch: paths.app(),
-    transform(program: Collection<j.Program>) {
-      addImport(program, j.importDeclaration([], j.literal("firebase/auth")))
-
-      const importFirebase = j.importDeclaration(
-        [j.importDefaultSpecifier(j.identifier("firebase"))],
-        j.literal("firebase"),
-      )
-
-      addImport(program, importFirebase)
-
-      // program.insertAfter(
-      //   j.callExpression(j.memberExpression(j.identifier("firebase"), j.identifier("config")), [
-      //     j.objectExpression([]),
-      //   ]),
-      // )
-      return program
-    },
+  .addNewFilesStep({
+    stepId: "firebase-utils-integrations",
+    stepName: "Create firebase-utils / firebase-admin-utlis",
+    explanation: "Add firebase/firebase-admin utils",
+    targetDirectory: "./app/integrations",
+    templatePath: path.join(__dirname, "templates", "integrations"),
+    templateValues: {},
   })
+  .addNewFilesStep({
+    stepId: "firebase-config",
+    stepName: "Create firebase-utils / firebase-admin-utlis",
+    explanation: "Add firebase/firebase-admin utils",
+    targetDirectory: "./config",
+    templatePath: path.join(__dirname, "templates", "config"),
+    templateValues: {},
+  })
+
+  // .addTransformFilesStep({
+  //   stepId: "firebase initialize",
+  //   stepName: "Import firebase",
+  //   explanation: `Import firebase on _app`,
+  //   singleFileSearch: paths.app(),
+  //   transform(program: Collection<j.Program>) {
+  //     paths
+  //     addImport(program, j.importDeclaration([], j.literal("firebase/auth")))
+
+  //     const importFirebase = j.importDeclaration(
+  //       [j.importDefaultSpecifier(j.identifier("firebase"))],
+  //       j.literal("firebase"),
+  //     )
+  //     addImport(program, importFirebase)
+  //     return program
+  //   },
+  // })
   .build()
