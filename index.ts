@@ -8,17 +8,16 @@ export default RecipeBuilder()
   .setDescription(`Configure your Blitz app's firebase auth`)
   .setOwner("miz404@gmail.com")
   .setRepoLink("https://github.com/blitz-js/blitz")
-  // .addAddDependenciesStep({
-  //   stepId: "addDeps",
-  //   stepName: "Add npm dependencies",
-  //   explanation: `Chakra requires some other dependencies like emotion to work`,
-  //   packages: [
-  //     {name: "@chakra-ui/core", version: "latest"},
-  //     {name: "@emotion/core", version: "latest"},
-  //     {name: "@emotion/styled", version: "latest"},
-  //     {name: "emotion-theming", version: "latest"},
-  //   ],
-  // })
+  .addAddDependenciesStep({
+    stepId: "addDeps",
+    stepName: "Add npm dependencies",
+    explanation: `Add firebase`,
+    packages: [
+      {name: "firebase", version: "latest"},
+      {name: "firebase-admin", version: "latest"},
+      {name: "react-firebase-hooks", version: "latest"},
+    ],
+  })
   // .addTransformFilesStep({
   //   stepId: "importProviderAndReset",
   //   stepName: "Import ThemeProvider and CSSReset component",
