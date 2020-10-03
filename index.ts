@@ -33,11 +33,11 @@ export default RecipeBuilder()
 
       addImport(program, importFirebase)
 
-      program.insertAfter(
-        j.callExpression(j.memberExpression(j.identifier("firebase"), j.identifier("config")), [
-          j.objectExpression([]),
-        ]),
-      )
+      // program.insertAfter(
+      //   j.callExpression(j.memberExpression(j.identifier("firebase"), j.identifier("config")), [
+      //     j.objectExpression([]),
+      //   ]),
+      // )
       return program
     },
   })
