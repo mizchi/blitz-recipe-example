@@ -19,9 +19,9 @@ export default RecipeBuilder()
     ],
   })
   .addTransformFilesStep({
-    stepId: "importProviderAndReset",
-    stepName: "Import ThemeProvider and CSSReset component",
-    explanation: `We can import the chakra provider into _app, so it is accessibly in the whole app`,
+    stepId: "firebase initialize",
+    stepName: "Import firebase",
+    explanation: `Import firebase on _app`,
     singleFileSearch: paths.app(),
     transform(program: Collection<j.Program>) {
       addImport(program, j.importDeclaration([], j.literal("firebase/auth")))
